@@ -1,0 +1,175 @@
+<form [formGroup] = "form" (ngSubmit)="handleFormSubmit()" >
+  <h2>Welcome on board!</h2>
+  <p>We just need a little bit of data from you to get you started 🚀</p>
+
+  <div class="control">
+    <label for="email">Email</label>
+    <input id="email" type="email" name="email" formControlName="email"/>
+    @if(form.controls["email"].touched && form.controls["email"].invalid){
+      <p class="error">Please enter a valid email</p>
+    }
+  </div>
+
+  <div class="control-row" formGroupName="passwords">
+    <div class="control">
+      <label for="password">Password</label>
+      <input
+        id="password"
+        type="password"
+        name="password"
+        formControlName="password"
+      />
+      @if(form.controls["passwords"].controls["password"].touched && form.controls["passwords"].controls["password"].invalid){
+        <p class="error">Please enter a valid password</p>
+      }
+    </div>
+
+    <div class="control" >
+      <label for="confirmPassword">Confirm Password</label>
+      <input
+        id="confirmPassword"
+        type="password"
+        name="confirmPassword"
+        formControlName="passwordConfirmation"
+      />
+      @if(form.controls["passwords"].controls["passwordConfirmation"].touched && form.controls["passwords"].controls["passwordConfirmation"].invalid){
+        <p class="error">Please enter a valid password</p>        
+      }
+    </div>
+  </div>
+
+  <hr />
+
+  <div>
+    <div class="control-row">
+      <div class="control">
+        <label for="first-name">First Name</label>
+        <input
+          type="text"
+          id="first-name"
+          name="first-name"
+          formControlName="firstName"
+        />
+        @if (form.controls["firstName"].touched && form.controls["firstName"].invalid) {
+          <p class="error">Please enter a valid first name</p>
+        }
+      </div>
+
+      <div class="control">
+        <label for="last-name">Last Name</label>
+        <input
+          type="text"
+          id="last-name"
+          name="last-name"
+          formControlName="lastName"
+        />
+        @if (form.controls["lastName"].touched && form.controls["lastName"].invalid) {
+          <p class="error">Please enter a valid last name</p>
+        }
+      </div>
+    </div>
+
+    <fieldset>
+      <legend>Your Address</legend>
+
+      <div class="control-row" formGroupName="adresse">
+        <div class="control">
+          <label for="street">Street</label>
+          <input type="text" id="street" name="street" formControlName="street"/>
+
+          @if (form.controls["adresse"].controls["street"].touched && form.controls["adresse"].controls["street"].invalid) {
+            <p class="error">Please enter a valid street</p>
+          }
+
+        </div>
+
+        <div class="control" >
+          <label for="number">Number</label>
+          <input type="text" id="number" name="number" formControlName="number" />
+        </div>
+      </div>
+
+      <div class="control-row" formGroupName="adresse">
+        <div class="control">
+          <label for="postal-code">Postal Code</label>
+          <input type="text" id="postal-code" name="postal-code" formControlName="postalCode" />
+        </div>
+
+        <div class="control" >
+          <label for="city">City</label>
+          <input type="text" id="city" name="city" formControlName="city" />
+        </div>
+      </div>
+    </fieldset>
+  </div>
+
+  <hr />
+
+  <div class="control-row">
+    <div class="control">
+      <label for="role">What best describes your role?</label>
+      <select id="role" name="role" formControlName="role">
+        <option value="student">Student</option>
+        <option value="teacher">Teacher</option>
+        <option value="employee">Employee</option>
+        <option value="founder">Founder</option>
+        <option value="other">Other</option>
+      </select>
+    </div>
+  </div>
+
+  <fieldset formArrayName="findMethod">
+    <legend>How did you find us?</legend>
+    <div class="control">
+      <input
+        type="checkbox"
+        id="google"
+        name="acquisition"
+        value="google"
+        formControlName="0"
+      />
+      <label for="google">Google</label>
+    </div>
+
+    <div class="control">
+      <input
+        type="checkbox"
+        id="friend"
+        name="acquisition"
+        value="friend"
+        formControlName="1"
+      />
+      <label for="friend">Referred by friend</label>
+    </div>
+
+    <div class="control">
+      <input
+        type="checkbox"
+        id="other"
+        name="acquisition"
+        value="other"
+        formControlName="2"
+      />
+      <label for="other">Other</label>
+    </div>
+  </fieldset>
+
+  <div class="control-row">
+    <div class="control">
+      <label for="terms-and-conditions">
+        <input
+          type="checkbox"
+          id="terms-and-conditions"
+          name="terms"
+          formControlName="agree"
+        />
+        I agree to the terms and conditions
+      </label>
+    </div>
+  </div>
+
+  <p class="form-actions">
+    <button type="reset" class="button button-flat">Reset</button>
+    <button type="submit" class="button">Sign up</button>
+  </p>
+</form>
